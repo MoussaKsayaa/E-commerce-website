@@ -1,0 +1,130 @@
+[
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "1",
+    "product-img" : "./img/products/f1.jpg",
+    "product-price" : "$35",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "2",
+    "product-img" : "./img/products/f2.jpg",
+    "product-price" : "$35",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "3",
+    "product-img" : "./img/products/f3.jpg",
+    "product-price" : "$35",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "4",
+    "product-img" : "./img/products/f4.jpg",
+    "product-price" : "$35",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "5",
+    "product-img" : "./img/products/f5.jpg",
+    "product-price" : "$35",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "6",
+    "product-img" : "./img/products/f6.jpg",
+    "product-price" : "$43",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Cotton Pant",
+    "product-id" : "7",
+    "product-img" : "./img/products/f7.jpg",
+    "product-price" : "$63",
+    "product-brand" : "disney",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "8",
+    "product-img" : "./img/products/f8.jpg",
+    "product-price" : "$43",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "9",
+    "product-img" : "./img/products/n1.jpg",
+    "product-price" : "$43",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "10",
+    "product-img" : "./img/products/n2.jpg",
+    "product-price" : "$43",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "11",
+    "product-img" : "./img/products/n3.jpg",
+    "product-price" : "$43",
+    "product-brand" : "adidas",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "12",
+    "product-img" : "./img/products/n4.jpg",
+    "product-price" : "$27",
+    "product-brand" : "marvel",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "13",
+    "product-img" : "./img/products/n5.jpg",
+    "product-price" : "$78",
+    "product-brand" : "star",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Cotton Pant",
+    "product-id" : "14",
+    "product-img" : "./img/products/n6.jpg",
+    "product-price" : "$63",
+    "product-brand" : "disney",
+    "product-rate" : "5"
+  },
+  {
+    "product-name" : "Long Sleeve Sweater",
+    "product-id" : "15",
+    "product-img" : "./img/products/n7.jpg",
+    "product-price" : "$78",
+    "product-brand" : "star",
+    "product-rate" : "3"
+  },
+  {
+    "product-name" : "Summer T-Shirts",
+    "product-id" : "16",
+    "product-img" : "./img/products/n8.jpg",
+    "product-price" : "$27",
+    "product-brand" : "marvel",
+    "product-rate" : "5"
+  }
+]
