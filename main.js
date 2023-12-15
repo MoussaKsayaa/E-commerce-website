@@ -1,4 +1,5 @@
 const LS = window.localStorage;
+LS.clear();
 let totalPrice = 0;
 let totalDisc = 0;
 let currentTotal = 0
