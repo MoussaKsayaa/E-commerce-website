@@ -372,6 +372,12 @@ body {
   transition: 0.2s ease;
   position: relative;
   cursor: pointer;
+  width: 100%;
+}
+.featured-products .products .product-box .imgbox {
+  min-height: 228.667px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
 }
 .featured-products .products .product-box:hover {
   box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);

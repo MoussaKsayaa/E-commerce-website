@@ -26,7 +26,7 @@ if (closeBurgerMenu) {
     navbar.classList.remove("active");
   });
 }
-
+fixLS();
 //* add items to local storage
 function addItemToLocalStorage() {
   const buyItemBtn = document.querySelector(
@@ -34,6 +34,7 @@ function addItemToLocalStorage() {
   );
   if (buyItemBtn) {
     buyItemBtn.addEventListener("click", function () {
+      fixLS();
       LS.setItem(
         `product-${LS.length + 1}`,
         `{
@@ -64,13 +65,25 @@ function addItemToLocalStorage() {
 
 //* add new Item effect
 function newItemEffect() {
+  let theCount = document.querySelector('#single-product .details-side .count').value;
   let addItem = document.createElement("div");
   addItem.className = "addItem";
-  addItem.innerHTML = "+1";
+  addItem.innerHTML = `+${theCount}`;
   document
     .querySelector("section#header #navbar li.basket")
     .appendChild(addItem);
   setTimeout(() => addItem.remove(), 1200);
+}
+//* this function is important to fix local storage problems cause the cart need it to be clean
+function fixLS() {
+  for (let i = 0; i < LS.length; i++) {
+    if (LS.key(i).slice(0,7) !== 'product') {
+      console.log('fix', LS.key(i));
+      LS.removeItem(LS.key(i));
+    }
+  }
+
+  console.log('fixed now');
 }
 
 //* add the products from localstorage to the cart
@@ -78,8 +91,11 @@ function newItemEffect() {
 function addItemToCart() {
   let MyTabel = document.querySelector("#my-items table tbody");
   if (MyTabel) {
-    if (LS.length != 0 && LS.getItem("product-1") !== null) {
+    if (LS.length != 0 && LS.key(0).slice(0, 8) === 'product-') {
       for (let i = 0; i < LS.length; i++) {
+        if (LS.getItem(LS.key(i)) === 'null') {
+          continue;
+        }
         let data = JSON.parse(LS.getItem(LS.key(i)));
         let row = document.createElement("tr");
         row.className = LS.key(i);
@@ -90,9 +106,9 @@ function addItemToCart() {
         row.appendChild(tdRemove);
         tdRemove.firstElementChild.addEventListener("click", function () {
           tdRemove.parentElement.remove();
-          LS.removeItem(this.parentElement.parentElement.className);
+          LS.setItem(this.parentElement.parentElement.className, 'null');
           getTotalPrice();
-          LS.length === 0 ? MyTabel.appendChild(saySomething()) : "";
+          MyTabel.childElementCount === 0 ? LS.clear() : '';
         });
         //  td img
         let tdImg = document.createElement("td");
@@ -132,11 +148,15 @@ function addItemToCart() {
     } else {
       MyTabel.appendChild(saySomething());
       getTotalPrice();
-      LS.clear();
     }
   }
 }
-window.onload = addItemToCart;
+window.onload = () => {
+  if (LS.key(0).slice(0, 7) !== 'product') {
+    LS.clear();
+  }
+  addItemToCart()
+};
 
 //* create message if the cart is empty
 function saySomething() {
@@ -148,6 +168,7 @@ function saySomething() {
 }
 
 //* get the products from json file
+let mainProductsContainer = document.querySelector("#products1");
 let productsContainer = document.querySelector("#products1.shop .products");
 let productsContainerMain = document.querySelector(
   "#products1.main-page .products"
@@ -164,12 +185,25 @@ fetch("./products.json")
 //* function to display the content inside the store
 function showProductsInTheStore(data) {
   if (productsContainer) {
+    let theP = document.createElement('p');
+    theP.innerHTML = "Summer Collection New Modern Design";
+    mainProductsContainer.prepend(theP);
+    let theHeading = document.createElement('h2');
+    theHeading.innerHTML = "Featured Products";
+    mainProductsContainer.prepend(theHeading);
     data.forEach((item) => {
       productsContainer.appendChild(createProductCard(item));
     });
     addEventOnTheItems(data);
   }
   if (productsContainerMain) {
+    let theP = document.createElement('p');
+    theP.innerHTML = "Summer Collection New Modern Design";
+    mainProductsContainer.prepend(theP);
+    let theHeading = document.createElement('h2');
+    theHeading.innerHTML = "Featured Products";
+    mainProductsContainer.prepend(theHeading);
+
     data.forEach((item) => {
       if (item["product-id"] <= 8) {
         productsContainerMain.appendChild(createProductCard(item));
@@ -187,10 +221,13 @@ function createProductCard(item) {
   productBox = document.createElement("div");
   productBox.className = "product-box";
   productBox.id = item["product-id"];
+  let imgbox = document.createElement("div");
+  imgbox.className = "imgbox";
+  productBox.appendChild(imgbox);
   let productImg = document.createElement("img");
   productImg.className = "product-img";
   productImg.src = item["product-img"];
-  productBox.appendChild(productImg);
+  imgbox.appendChild(productImg);
   let productBrand = document.createElement("p");
   productBrand.className = "product-brand";
   productBrand.innerHTML = item["product-brand"];
@@ -241,6 +278,7 @@ function addEventOnTheItems(data) {
       currentId = e.target.closest(".product-box").id;
       // show the product when click on it
       showProduct(currentId, data);
+
       // show all products
       showAllProducts(data);
       // show pagination
@@ -459,10 +497,11 @@ function getTotalPrice() {
 }
 
 //* check if the user input a coupon or not
-let coupon = document.querySelector("section#add-coupon .add-cart button");
+let coupon = document.querySelector('#form-coupon')
 let couponInput = document.querySelector("section#add-coupon .add-cart input");
 if (coupon) {
-  coupon.addEventListener("click", () => {
+  coupon.addEventListener('submit', function (e) {
+    e.preventDefault();
     if (couponInput.value === "moussa") {
       totalDisc = 10;
       getTotalPrice();
