@@ -69,21 +69,25 @@ function newItemEffect() {
   let addItem = document.createElement("div");
   addItem.className = "addItem";
   addItem.innerHTML = `+${theCount}`;
-  document
-    .querySelector("section#header #navbar li.basket")
-    .appendChild(addItem);
+  if (window.innerWidth < 768) {
+    document
+      .querySelector("section#header .mobile .basket")
+      .appendChild(addItem);
+  } else {
+    document
+      .querySelector("section#header #navbar .basket")
+      .appendChild(addItem);
+  }
   setTimeout(() => addItem.remove(), 1200);
 }
+
 //* this function is important to fix local storage problems cause the cart need it to be clean
 function fixLS() {
   for (let i = 0; i < LS.length; i++) {
     if (LS.key(i).slice(0,7) !== 'product') {
-      console.log('fix', LS.key(i));
       LS.removeItem(LS.key(i));
     }
   }
-
-  console.log('fixed now');
 }
 
 //* add the products from localstorage to the cart
@@ -108,7 +112,10 @@ function addItemToCart() {
           tdRemove.parentElement.remove();
           LS.setItem(this.parentElement.parentElement.className, 'null');
           getTotalPrice();
-          MyTabel.childElementCount === 0 ? LS.clear() : '';
+          if (MyTabel.childElementCount === 0) {
+            LS.clear();
+            MyTabel.appendChild(saySomething());
+          } 
         });
         //  td img
         let tdImg = document.createElement("td");
@@ -152,10 +159,12 @@ function addItemToCart() {
   }
 }
 window.onload = () => {
-  if (LS.key(0).slice(0, 7) !== 'product') {
-    LS.clear();
+  if (LS.key(0) !== null) {
+    if (LS.key(0).slice(0, 7) !== 'product') {
+      LS.clear();
+    }
+    addItemToCart()
   }
-  addItemToCart()
 };
 
 //* create message if the cart is empty
@@ -278,7 +287,6 @@ function addEventOnTheItems(data) {
       currentId = e.target.closest(".product-box").id;
       // show the product when click on it
       showProduct(currentId, data);
-
       // show all products
       showAllProducts(data);
       // show pagination

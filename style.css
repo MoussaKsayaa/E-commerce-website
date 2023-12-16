@@ -88,7 +88,7 @@ body {
   padding: 0 20px;
   position: relative;
 }
-#header #navbar li .addItem {
+#header .addItem {
   font-weight: 400;
   width: 25px;
   height: 25px;
@@ -105,10 +105,17 @@ body {
   display: block;
   animation: moveUp 0.7s forwards ease-in;
   animation-delay: 0.5s;
+  top: 100px;
+}
+#header .mobile .addItem {
+  top: 70px;
+  
+}
+@media (max-width: 575px) {
+  
 }
 @keyframes moveUp {
   from {
-    top: 100px;
     opacity: 1;
   }
   to {
@@ -208,6 +215,9 @@ body {
     display: flex;
     align-items: center;
     gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   #header .mobile .burger-menu {
     font-size: 30px;
@@ -215,8 +225,16 @@ body {
   }
   #header .mobile .basket {
     font-size: 20px;
+    position: relative;
     color: var(--main-color);
+    text-decoration: none;
   }
+  #header .mobile .basket a {
+    font-size: 20px;
+    color: var(--main-color);
+    text-decoration: none;
+  }
+
 }
 @media (max-width: 575px) {
   #header {
